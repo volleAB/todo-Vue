@@ -4,4 +4,6 @@
 
    **Practice makes perfect.**
 
-![just do it](https://cn.vuejs.org/images/logo.png)
+<center>
+    <img src="https://cn.vuejs.org/images/logo.png" height="200">
+</center>
