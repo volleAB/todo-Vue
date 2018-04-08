@@ -22,6 +22,11 @@ const config = {
     //webpack里由vue-loader为webpack去处理.vue的文件类型，最终可以输出正确的js代码类型
             },
             {
+                test: /\.jsx$/,
+                loader: 'babel-loader'
+    //webpack里由vue-loader为webpack去处理.vue的文件类型，最终可以输出正确的js代码类型
+            },
+            {
                 test: /\.css$/,
                 use: [
                     'style-loader',
@@ -33,6 +38,12 @@ const config = {
                 use: [
                     'style-loader',
                     'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                        }
+                    },
                     'less-loader'
                 ]
             },
