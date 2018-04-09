@@ -7,11 +7,29 @@
         placeholder="接下去要做什么"
         @keyup.enter="addTodo"
       >
+      <item :todo="todo"></item>
+      <tabs :filter="filter"></tabs>
   </section>
 </template>
 
 <script>
+import Item from './item.vue'
+import Tabs from './tabs.vue'
 export default {
+  data() {
+    return {
+      todo: {
+        id: 0,
+        content: 'this is todo',
+        completed: false,
+      },
+      filter: 'all'
+    }
+  },
+  components: {
+    Item,
+    Tabs,
+  },
   methods: {
       addTodo() {}
   }
