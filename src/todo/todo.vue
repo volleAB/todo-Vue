@@ -17,7 +17,7 @@
         :filter="filter" 
         :todos="todos"
         @toggle="toggleFilter"
-        @clearAllCompleted='clearAllCompleted'
+        @clearAllCompleted="clearAllCompleted"
       />
   </section>
 </template>
