@@ -1,38 +1,43 @@
 <template>
-  <div :class="['todo-item', todo.completed ? 'completed' : '']">
-      <input 
-        type="checkbox"
-        class="toggle"
-        v-model="todo.completed"
-      >
-      <label>{{todo.content}}</label>
-      <button class="destory" @click="deleteTodo"></button>
-  </div>
+    <div :class="['todo-item', todo.completed ? 'completed' : '']">
+        <input type="checkbox"
+               class="toggle"
+               v-model="todo.completed"
+        >
+        <label>{{todo.content}}</label>
+        <button class="destroy" @click="deleteTodo"></button>
+    </div>
 </template>
 
 <script>
-export default {
-  props: {
-      todo: {
-          type: Object,
-          required: true,
-      }
-  },
-  methods: {
-      deleteTOdo() {}
-  }
-}
+    export default {
+        // 父子组件间传值
+        props: {
+            // 接收父组件todo.vue传过来的todo对象
+            todo: {
+                type: Object,
+                require: true
+            }
+        },
+        methods: {
+            deleteTodo() {
+                // this.$emit 触发del事件，并返回todo.id
+                // 往父组件传递 del 方法
+                this.$emit('del', this.todo.id)
+            }
+        }
+    }
 </script>
 
 <style lang="less" scoped>
 .todo-item{
     position: relative;
-    background-color: #ffffff;
+    background-color: #fff;
     font-size: 24px;
     border-bottom: 1px solid rgba(0,0,0,0.06);
     &:hover{
-        .destory:after{
-            content: 'x';
+        .destroy:after{
+            content: '×'
         }
     }
     label{
@@ -42,7 +47,7 @@ export default {
         margin-left: 45px;
         display: block;
         line-height: 1.2;
-        transform: color 0.4s;
+        transition: color 0.4s;
     }
     &.completed{
         label{
@@ -72,10 +77,10 @@ export default {
         content: url('../assets/images/done.svg')
     }
 }
-.destory{
+.destroy{
     position: absolute;
     top: 0;
-    right: 0;
+    right: 10px;
     bottom: 0;
     width: 40px;
     height: 40px;
@@ -85,7 +90,7 @@ export default {
     margin-bottom: 11px;
     transition: color 0.2s ease-out;
     background-color: transparent;
-    // appearance: none;
+    appearance: none;
     border-width: 0;
     cursor: pointer;
     outline: none;
